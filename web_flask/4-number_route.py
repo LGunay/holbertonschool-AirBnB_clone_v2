@@ -1,35 +1,34 @@
 #!/usr/bin/python3
-"""starts a Flask web application"""
-from flask import Flask
+"""HBNB"""
 
+from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
-def index():
+@app.route("/", strict_slashes=False)
+def home():
     return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
     return "HBNB"
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def display_text(text):
-    return 'C {}'.format(text.replace('_', ' '))
+@app.route("/c/<text>", strict_slashes=False)
+def C(text):
+    return f"C {text}".replace("_", " ")
 
 
-@app.route('/python', strict_slashes=False, defaults={'text': 'is cool'})
-@app.route('/python/<text>', strict_slashes=False)
-def display_python(text):
-    return 'Python {}'.format(text.replace('_', ' '))
+@app.route("/python/", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python(text="is cool"):
+    return f"Python {text}".replace("_", " ")
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def display_int(n):
-    ''' displays n '''
-    return '{} is a number'.format(n)
+@app.route("/number/<int:n>", strict_slashes=False)
+def number(n):
+    return f"{n} is a number"
 
 
 if __name__ == "__main__":
