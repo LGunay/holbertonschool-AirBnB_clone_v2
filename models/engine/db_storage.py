@@ -79,12 +79,12 @@ class DBStorage:
     def reload(self):
         """Loads storage database"""
         Base.metadata.create_all(self.__engine)
-        SessionFactory = sessionmaker(
+        Session = sessionmaker(
             bind=self.__engine,
             expire_on_commit=False
         )
-        self.__session = scoped_session(SessionFactory)()
+        self.__session = scoped_session(Session)
 
     def close(self):
         """Closes the storage engine."""
-        self.__session.remove()
+        self.__session.close()
