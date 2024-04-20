@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Hello Flask!"""
+"""HBNB"""
 
 from flask import Flask
 app = Flask(__name__)
@@ -10,7 +10,7 @@ def home():
     return "Hello HBNB!"
 
 
-@APP.route("/hbnb", strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
     return "HBNB"
 
