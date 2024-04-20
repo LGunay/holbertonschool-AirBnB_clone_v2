@@ -32,7 +32,7 @@ def number(n):
     return f"{n} is a number"
 
 
-@app.route("/number_template/<n>")
+@app.route("/number_template/<int:n>")
 def n_temp(n):
     return render_template("5-number.html", n=n)
 
