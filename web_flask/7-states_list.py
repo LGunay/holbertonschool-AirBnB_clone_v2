@@ -1,26 +1,25 @@
 #!/usr/bin/python3
-"""list of state"""
-
+'''Module for the flask application'''
 
 from flask import Flask, render_template
-from models.state import State
 from models import storage
+from models.state import State
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route("/states_list")
-def lists():
+@app.route('/states_list')
+def states_list():
     states = storage.all(State)
-    sorted_state = sorted(states.items(), key=lambda x: x[1].name)
-    return render_template("7-states_list.html", states=sorted_state)
+    sorted_states = dict(sorted(states.items(), key=lambda x: x[1].name))
+    return render_template('7-states_list.html', states=sorted_states)
 
 
 @app.teardown_appcontext
-def close(exception):
+def teardown_db(exception):
     storage.close()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
